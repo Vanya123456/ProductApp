@@ -13,11 +13,11 @@ import java.util.List;
 public class Cart {
     @Setter
     @Getter
-    private List<Product> cartOfProducts;
+    private List<Product> products;
     private ProductService productService;
 
     public Cart() {
-        cartOfProducts = new ArrayList<>();
+        products = new ArrayList<>();
     }
 
     @Autowired
@@ -26,18 +26,19 @@ public class Cart {
     }
 
     public void addProduct(Long id) {
-        cartOfProducts.add(productService.getProductById(id));
+        products.add(productService.getProductById(id));
     }
 
     public void deleteProduct(Long id) throws RuntimeException{
-            if (cartOfProducts.contains(productService.getProductById(id))) {
-                cartOfProducts.remove(productService.getProductById(id));
+        Product product = productService.getProductById(id);
+            if (products.contains(product)) {
+                products.remove(product);
             }else {
                 throw new RuntimeException();
             }
     }
 
     public List<Product> getAllProductsInCart(){
-        return cartOfProducts;
+        return products;
     }
 }

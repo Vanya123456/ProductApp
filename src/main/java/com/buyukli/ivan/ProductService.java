@@ -3,6 +3,7 @@ package com.buyukli.ivan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -19,6 +20,6 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts(){
-        return productRepository.findAllProducts();
+        return Collections.unmodifiableList(productRepository.findAllProducts());
     }
 }
